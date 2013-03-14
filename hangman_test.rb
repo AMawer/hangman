@@ -40,9 +40,27 @@ class HangmanTest < Test::Unit::TestCase
   		assert_equal (@new_game.chances - @new_game.guess_count), @new_game.chances
   	end
 
+  	# def test_return_index_of_correct_guess
+  	# 	@new_game.word = ['a','r','r','a','y']
+  	# 	@new_game.guess = 'a'
+  	# 	assert_equal 0, @new_game.word.index(@new_game.guess) 
+  	# end
 
-
-
-  	
+  	def method_name
+  		
+  	end
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+

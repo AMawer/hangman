@@ -3,7 +3,7 @@ class Hangman
 	# It is only concerned with one run through of the game
 	# It is not responsible for human interaction.
 
-	attr_accessor :words, :word, :spaces, :chances, :guess, :guess_count
+	attr_accessor :words, :word, :spaces, :chances, :guess, :guess_count, :guess_index
 
   def initialize
     @words = ['array', 'dog', 'chow']
@@ -18,11 +18,8 @@ class Hangman
   end
 
   def space_converter
-    #new_word = @word.dup
-  	spaces = word.map { |x| "_" }
-  	@more_spaces = spaces.join(' ')
-    p @more_spaces
-    p @word
+  	@spaces = word.map { |x| "_" }
+  	@more_spaces = @spaces.join(' ')
   end
 
   def guess
@@ -30,14 +27,23 @@ class Hangman
       puts "Please enter a guess"
       @guess = gets.chomp
       if @word.include?(@guess)
-        puts @guess_count
+        sub
+        if @spaces == @word
+          puts "You've won!"
+          break
+        end
       elsif !@word.include?(@guess)
         @guess_count += 1
         puts "Letter not included"
-        p @word
       end
     end
+  end
 
+  def sub
+    @guess_index = @word.index(@guess)
+    @spaces[@guess_index] = @guess
+    puts "Good choice!"
+    p @spaces
   end
 
 end
